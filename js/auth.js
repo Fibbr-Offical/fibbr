@@ -1,4 +1,10 @@
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("signupBtn").addEventListener("click", signup);
+});
+
 async function signup() {
+  alert("Button works"); // test first
+
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
@@ -7,23 +13,10 @@ async function signup() {
     password
   });
 
-  if (error) return alert(error.message);
+  if (error) {
+    alert(error.message);
+    return;
+  }
 
-  alert("Signed up!");
-  window.location.href = "feed.html";
-}
-
-async function login() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password
-  });
-
-  if (error) return alert(error.message);
-
-  alert("Logged in!");
-  window.location.href = "feed.html";
+  alert("Signup success!");
 }
